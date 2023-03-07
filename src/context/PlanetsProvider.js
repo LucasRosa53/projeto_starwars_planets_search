@@ -11,7 +11,6 @@ export function PlanetsContextProvider({ children }) {
       const planetsApi = await getChamadaApi();
       const { results } = planetsApi;
       results.forEach((element) => delete element.residents);
-      console.log(planetsApi);
       setPlanets(results);
     };
     FilterPlanets();
