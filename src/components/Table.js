@@ -5,7 +5,7 @@ import PlanetsContext from '../context/PlanetsContext';
 function Table() {
   const { planets } = useContext(PlanetsContext);
   const { arrayFilter } = useContext(FilterNameContext);
-  console.log(arrayFilter);
+  // console.log(arrayFilter);
 
   return (
     <div>
