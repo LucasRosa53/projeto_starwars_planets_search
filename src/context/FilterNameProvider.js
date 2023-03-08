@@ -16,16 +16,16 @@ export function FilterNameProvider({ children }) {
     value: 0,
   });
   // console.log(selected);
-  const tratarDados = () => {
-    const filterPlanetsName = (planets.filter((planet) => planet.name.toLowerCase()
-      .includes(filterName.toLowerCase())));
-    setArrayFilter(filterPlanetsName);
-    return filterPlanetsName;
-  }; // função criada para filtrar o nome dos planetas( tratarDados() )
+  // const tratarDados = () => {
+  // }; // função criada para filtrar o nome dos planetas( tratarDados() )
 
   const tratarFiltros = () => {
     // console.log(arrayObj);
-    const numberFilter = planets.filter((planet) => {
+    const filterPlanetsName = (planets.filter((planet) => planet.name.toLowerCase()
+      .includes(filterName.toLowerCase())));
+    setArrayFilter(filterPlanetsName);
+    // return filterPlanetsName;
+    const numberFilter = filterPlanetsName.filter((planet) => {
       const newPlanets = arrayObj.map((filter) => {
         switch (filter.operator) {
         case 'maior que':
@@ -44,7 +44,7 @@ export function FilterNameProvider({ children }) {
     return setArrayFilter(numberFilter);
   };
   useEffect(() => {
-    tratarDados();
+    // tratarDados();
     tratarFiltros();
   }, [filterName, planets, arrayObj]);
 

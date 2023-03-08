@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import FilterNameContext from '../context/FilterNameContext';
 
 function FilterName() {
-  const { setFilterName } = useContext(FilterNameContext);
+  // const { setFilterName } = useContext(FilterNameContext);
   const { selected,
+    setFilterName,
     setSelected,
     // setFiltersSelected,
     // filtersSelected,
