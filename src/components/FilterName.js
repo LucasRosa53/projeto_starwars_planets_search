@@ -65,6 +65,7 @@ function FilterName() {
       </button>
     </div>
   );
-} setArrayfilters = {};
+}
+// setArrayfilters = {};
 
 export default FilterName;
