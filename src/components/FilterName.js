@@ -4,12 +4,16 @@ import { arrayOperator } from '../service/arrayOperator';
 
 function FilterName() {
   const { selected,
+    // filtersSelected,
     setFilterName,
     setSelected,
     arraysColumn,
     arrayObj,
     setArrayObj,
+    removeFiltro,
+    removeTudo,
   } = useContext(FilterNameContext);
+  console.log(arrayObj);
 
   return (
     <div>
@@ -54,6 +58,25 @@ function FilterName() {
         } }
       >
         Filtrar
+      </button>
+      {arrayObj?.map((filter) => (
+        <div data-testid="filter" key={ filter.column }>
+          {`${filter.column}`}
+          {`${filter.operator}`}
+          {`${filter.value}`}
+          <button
+            onClick={ () => removeFiltro(filter.column) }
+          >
+            X
+          </button>
+        </div>
+      ))}
+      <button
+        data-testid="button-remove-filters"
+        type="button"
+        onClick={ () => removeTudo() }
+      >
+        Remover Filtros
       </button>
     </div>
   );

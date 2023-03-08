@@ -21,6 +21,16 @@ export function FilterNameProvider({ children }) {
   // const tratarDados = () => {
   // }; // função criada para filtrar o nome dos planetas( tratarDados() )
 
+  const removeTudo = () => {
+    setArrayObj([]);
+    setArraysColumn(arrayColumn);
+  };
+
+  const removeFiltro = (linha) => {
+    setArraysColumn((prev) => [...prev, linha]);
+    setArrayObj(arrayObj.filter((filtro) => filtro.column !== linha));
+  };
+
   const tratarColumns = () => {
     const removeColumn = arraysColumn.filter((coluna) => coluna !== selected.column);
     setArraysColumn(removeColumn);
@@ -77,7 +87,9 @@ export function FilterNameProvider({ children }) {
         setArrayObj,
         selected,
         arraysColumn,
-        setArraysColumn } }
+        setArraysColumn,
+        removeFiltro,
+        removeTudo } }
     >
       { children }
     </FilterNameContext.Provider>
