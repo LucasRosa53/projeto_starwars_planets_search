@@ -21,7 +21,7 @@ export function FilterNameProvider({ children }) {
       .includes(filterName.toLowerCase())));
     setArrayFilter(filterPlanetsName);
     return filterPlanetsName;
-  }; // função criada para filtrar o nome dos planetas( tratarDados() ).
+  }; // função criada para filtrar o nome dos planetas( tratarDados() )
 
   const tratarFiltros = () => {
     // console.log(arrayObj);
