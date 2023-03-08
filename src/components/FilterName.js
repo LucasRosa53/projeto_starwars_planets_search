@@ -1,23 +1,15 @@
 import React, { useContext } from 'react';
 import FilterNameContext from '../context/FilterNameContext';
+import { arrayOperator } from '../service/arrayOperator';
 
 function FilterName() {
-  // const { setFilterName } = useContext(FilterNameContext);
   const { selected,
     setFilterName,
     setSelected,
-    // setFiltersSelected,
-    // filtersSelected,
-    // setArrayFilter,
-    // arrayFilter,
+    arraysColumn,
     arrayObj,
     setArrayObj,
   } = useContext(FilterNameContext);
-  // console.log(useContext(FilterNameContext));
-
-  // const handleChange = (event) => {
-  //   setFilterName(event.target.value);
-  // }; // função para pegar o campo do input quando o usuário digitar.
 
   return (
     <div>
@@ -29,14 +21,13 @@ function FilterName() {
       />
       <select
         data-testid="column-filter"
+        value={ selected.column }
         name="column"
         onChange={ (e) => setSelected({ ...selected, column: e.target.value }) }
       >
-        <option value="population">population</option>
-        <option value="orbital_period">orbital_period</option>
-        <option value="diameter">diameter</option>
-        <option value="rotation_period">rotation_period</option>
-        <option value="surface_water">surface_water</option>
+        {arraysColumn.map((e) => (
+          <option key={ e } value={ e }>{e}</option>
+        ))}
       </select>
       <select
         data-testid="comparison-filter"
@@ -44,9 +35,9 @@ function FilterName() {
         value={ selected.operator }
         onChange={ (e) => setSelected({ ...selected, operator: e.target.value }) }
       >
-        <option value="maior que">maior que</option>
-        <option value="menor que">menor que</option>
-        <option value="igual a">igual a</option>
+        {arrayOperator.map((e) => (
+          <option key={ e } value={ e }>{e}</option>
+        ))}
       </select>
       <input
         data-testid="value-filter"

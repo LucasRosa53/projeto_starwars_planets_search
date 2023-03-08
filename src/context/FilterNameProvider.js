@@ -2,22 +2,29 @@ import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import FilterNameContext from './FilterNameContext';
 import PlanetsContext from './PlanetsContext';
-
+import { arrayColumn } from '../service/arrayColumn';
+// import { arrayOperator } from '../service/arrayOperator';
 // const arrayObj = [];
 export function FilterNameProvider({ children }) {
   const { planets } = useContext(PlanetsContext); // array de planetas.
   const [filterName, setFilterName] = useState(''); // estado criado para filtrar o nome dos planetas.
   const [arrayFilter, setArrayFilter] = useState([]); // estado que controla o array de planetas.
   const [filtersSelected, setFiltersSelected] = useState([]); // estado para controlar os novos filtros.
+  const [arraysColumn, setArraysColumn] = useState(arrayColumn);
   const [arrayObj, setArrayObj] = useState([]);
   const [selected, setSelected] = useState({ // estado criado para usar nos inputs.
-    column: 'population',
+    column: '',
     operator: 'maior que',
     value: 0,
   });
   // console.log(selected);
   // const tratarDados = () => {
   // }; // função criada para filtrar o nome dos planetas( tratarDados() )
+
+  const tratarColumns = () => {
+    const removeColumn = arraysColumn.filter((coluna) => coluna !== selected.column);
+    setArraysColumn(removeColumn);
+  };
 
   const tratarFiltros = () => {
     // console.log(arrayObj);
@@ -44,6 +51,16 @@ export function FilterNameProvider({ children }) {
     return setArrayFilter(numberFilter);
   };
   useEffect(() => {
+    if (arrayObj.length > 0) {
+      tratarColumns();
+    }
+  }, [arrayObj]);
+
+  useEffect(() => {
+    setSelected((prev) => ({ ...prev, column: arraysColumn[0] }));
+  }, [arraysColumn]);
+
+  useEffect(() => {
     // tratarDados();
     tratarFiltros();
   }, [filterName, planets, arrayObj]);
@@ -58,7 +75,9 @@ export function FilterNameProvider({ children }) {
         setSelected,
         arrayObj,
         setArrayObj,
-        selected } }
+        selected,
+        arraysColumn,
+        setArraysColumn } }
     >
       { children }
     </FilterNameContext.Provider>
