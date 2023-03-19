@@ -13,7 +13,7 @@ function FilterName() {
     removeFiltro,
     removeTudo,
   } = useContext(FilterNameContext);
-  console.log(arrayObj);
+  // console.log(selected);
 
   return (
     <div>
@@ -59,12 +59,13 @@ function FilterName() {
       >
         Filtrar
       </button>
-      {arrayObj?.map((filter) => (
+      {arrayObj.map((filter) => (
         <div data-testid="filter" key={ filter.column }>
           {`${filter.column}`}
           {`${filter.operator}`}
           {`${filter.value}`}
           <button
+            data-testid={ filter.column }
             onClick={ () => removeFiltro(filter.column) }
           >
             X
@@ -77,6 +78,41 @@ function FilterName() {
         onClick={ () => removeTudo() }
       >
         Remover Filtros
+      </button>
+      <select
+        data-testid="column-sort"
+        value={ selected.ordenar }
+        name="ordenar"
+        onChange={ (e) => setSelected({ ...selected, ordenar: e.target.value }) }
+      >
+        Ordenar
+        {arraysColumn.map((e) => (
+          <option key={ e } value={ e }>{e}</option>
+        ))}
+      </select>
+      <label>
+        <input
+          data-testid="column-sort-input-asc"
+          type="radio"
+          value="ASC"
+          // onChange={}
+        />
+        Ascendente
+      </label>
+      <label>
+        <input
+          data-testid="column-sort-input-desc"
+          type="radio"
+          value="DESC"
+          // onChange={}
+        />
+        Descendente
+      </label>
+      <button
+        // onClick={}
+        data-testid="column-sort-button"
+      >
+        Ordenar
       </button>
     </div>
   );

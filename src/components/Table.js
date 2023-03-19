@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import FilterNameContext from '../context/FilterNameContext';
-import PlanetsContext from '../context/PlanetsContext';
+// import PlanetsContext from '../context/PlanetsContext';
 
 function Table() {
-  const { planets } = useContext(PlanetsContext);
+  // const { planets } = useContext(PlanetsContext);
   const { arrayFilter } = useContext(FilterNameContext);
-  // console.log(arrayFilter);
+  console.log(arrayFilter);
 
   return (
     <div>
@@ -28,9 +28,9 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          { (arrayFilter !== 0 ? arrayFilter : planets)?.map((element) => (
+          { (arrayFilter !== 0 && arrayFilter)?.map((element) => (
             <tr key={ element.name }>
-              <td>
+              <td data-testid="planet-name">
                 { element.name }
               </td>
               <td>

@@ -9,9 +9,11 @@ export function FilterNameProvider({ children }) {
   const { planets } = useContext(PlanetsContext); // array de planetas.
   const [filterName, setFilterName] = useState(''); // estado criado para filtrar o nome dos planetas.
   const [arrayFilter, setArrayFilter] = useState([]); // estado que controla o array de planetas.
+  // console.log(arrayFilter);
   const [filtersSelected, setFiltersSelected] = useState([]); // estado para controlar os novos filtros.
   const [arraysColumn, setArraysColumn] = useState(arrayColumn);
   const [arrayObj, setArrayObj] = useState([]);
+  // const [arraySort, setArraySort] = useState([]);
   const [selected, setSelected] = useState({ // estado criado para usar nos inputs.
     column: '',
     operator: 'maior que',
@@ -37,7 +39,6 @@ export function FilterNameProvider({ children }) {
   };
 
   const tratarFiltros = () => {
-    // console.log(arrayObj);
     const filterPlanetsName = (planets.filter((planet) => planet.name.toLowerCase()
       .includes(filterName.toLowerCase())));
     setArrayFilter(filterPlanetsName);
@@ -58,8 +59,22 @@ export function FilterNameProvider({ children }) {
       return newPlanets.every((el) => el);
     });
     // console.log(numberFilter);
-    return setArrayFilter(numberFilter);
+    setArrayFilter(numberFilter);
   };
+  // const funcSort = () => {
+  //   const menosUm = -1;
+  //   const ordered = arrayFilter.sort((a, b) => {
+  //     if (arrayFilter[a.name] > arrayFilter[b.name]) {
+  //       return 1;
+  //     }
+  //     if (arrayFilter[a.name] < arrayFilter[b.name]) {
+  //       return menosUm;
+  //     }
+  //     return 0;
+  //   });
+  //   console.log(ordered);
+  // };
+
   useEffect(() => {
     if (arrayObj.length > 0) {
       tratarColumns();
